@@ -37,6 +37,7 @@ int main(){
     printf("\tFile Size: %s\n",men);
     //printf("\tFile Size: %llu\n",fileinfo.st_size);
     printf("\tFile Permissions(octal): %o\n",fileinfo.st_mode);
+    printf("\tFile Permissions: %o\n",fileinfo.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO));
     //printf("\tFile Permissions(octal): %o\n",fileinfo.st_mode);
     printf("\tTime of Last Access: %s\n",ctime(&fileinfo.st_atime));
 
