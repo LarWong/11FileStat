@@ -30,14 +30,13 @@ int main(){
         printf("%o\n",mode >> i);
         men2[8 - i] = mode >> i & 1 ? men2[8 - i] : '-';
     }
-    printf("TESTING : %s\n", men2);
 
     char * men = calloc(6,sizeof(char));
     pref!=0 ? sprintf(men, "%lld%cB",size/mult,pref) : sprintf(men, "%lldB",size/mult);
     printf("\tFile Size: %s\n",men);
     //printf("\tFile Size: %llu\n",fileinfo.st_size);
     printf("\tFile Permissions(octal): %o\n",fileinfo.st_mode);
-    //printf("\tFile Permissions(octal): %o\n",fileinfo.st_mode);
+    printf("\tFile Permissions(perm_bits): %s\n",men2);
     printf("\tTime of Last Access: %s\n",ctime(&fileinfo.st_atime));
 
     return 0;
