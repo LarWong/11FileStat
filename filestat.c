@@ -23,21 +23,20 @@ int main(){
         }
     }
 
-//    mode_t mode = fileinfo.st_mode << (sizeof(fileinfo.st_mode) * 8 - 9);
-//    char * men2 = calloc(sizeof(char), 10);
-//    strcpy(men2,"rwxrwxrwx");
-//    for (int i = 0; i<9; i++){
-//        printf("%d\n",mode >> i);
-//        men2[i] = mode >> i ? men2[i] : '-';
-//    }
-//    printf("TESTING : %s\n", men2);
+    mode_t mode = fileinfo.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO);
+    char * men2 = calloc(sizeof(char), 10);
+    strcpy(men2,"rwxrwxrwx");
+    for (int i = 0; i<9; i++){
+        printf("%o\n",mode >> i);
+        men2[8 - i] = mode >> i & 1 ? men2[8 - i] : '-';
+    }
+    printf("TESTING : %s\n", men2);
 
     char * men = calloc(6,sizeof(char));
     pref!=0 ? sprintf(men, "%lld%cB",size/mult,pref) : sprintf(men, "%lldB",size/mult);
     printf("\tFile Size: %s\n",men);
     //printf("\tFile Size: %llu\n",fileinfo.st_size);
     printf("\tFile Permissions(octal): %o\n",fileinfo.st_mode);
-    printf("\tFile Permissions: %o\n",fileinfo.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO));
     //printf("\tFile Permissions(octal): %o\n",fileinfo.st_mode);
     printf("\tTime of Last Access: %s\n",ctime(&fileinfo.st_atime));
 
