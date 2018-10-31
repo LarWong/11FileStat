@@ -27,7 +27,7 @@ int main(){
     char * men2 = calloc(sizeof(char), 10);
     strcpy(men2,"rwxrwxrwx");
     for (int i = 0; i<9; i++){
-        printf("%o\n",mode >> i);
+        //printf("%o\n",mode >> i);
         men2[8 - i] = mode >> i & 1 ? men2[8 - i] : '-';
     }
 
